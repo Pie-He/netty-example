@@ -25,7 +25,7 @@ public class GameServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            //这里我们先不写代码，这里主要是添加业务处理handler
+                            ch.pipeline().addLast(new ServerHandler());
                         }
                     });
             ChannelFuture f = b.bind(port).sync();
